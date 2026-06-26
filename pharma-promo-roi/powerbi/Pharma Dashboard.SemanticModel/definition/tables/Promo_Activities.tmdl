@@ -1,0 +1,89 @@
+table Promo_Activities
+	lineageTag: 71881d38-4e05-4286-9af9-44b1c89c0b0c
+
+	column ActivityID
+		dataType: string
+		lineageTag: fe6af9f1-d3ff-47e7-9807-ae3f7630c07f
+		summarizeBy: none
+		sourceColumn: ActivityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3aa9c222-f974-4187-b1f4-8cbaa4f8dcff
+		summarizeBy: sum
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column PhysicianID
+		dataType: string
+		lineageTag: 0d818c9a-f746-40f0-97f1-2ad21c7f175d
+		summarizeBy: none
+		sourceColumn: PhysicianID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChannelID
+		dataType: string
+		lineageTag: 633a396f-f63d-4dbb-8a48-fddec6fcc986
+		summarizeBy: none
+		sourceColumn: ChannelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cost
+		dataType: double
+		lineageTag: 280ca3b8-c3c4-40f8-ac91-240fa0aef660
+		summarizeBy: sum
+		sourceColumn: Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Reach
+		dataType: int64
+		formatString: 0
+		lineageTag: 271badf3-73ce-4c0d-a183-4e8fd45e5698
+		summarizeBy: sum
+		sourceColumn: Reach
+
+		annotation SummarizationSetBy = Automatic
+
+	column AttributedRevenue
+		dataType: double
+		lineageTag: 7a926bc7-51e1-4955-b9ab-edff0f881773
+		summarizeBy: sum
+		sourceColumn: AttributedRevenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ROI_pct
+		dataType: double
+		lineageTag: f8121028-830f-46c3-ab5a-beaf33c8e55e
+		summarizeBy: sum
+		sourceColumn: ROI_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Promo_Activities = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\steph\Downloads\pharma_sales_promo_data.xlsx"), null, true),
+				    Promo_Activities_Sheet = Source{[Item="Promo_Activities",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Promo_Activities_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ActivityID", type text}, {"Date", Int64.Type}, {"PhysicianID", type text}, {"ChannelID", type text}, {"Cost", type number}, {"Reach", Int64.Type}, {"AttributedRevenue", type number}, {"ROI_pct", type number}}),
+				    #"Converted Date" = Table.TransformColumns(#"Changed Type", {{"Date", Date.From, type date}})
+				in
+				    #"Converted Date"
+
+	annotation PBI_ResultType = Table
+

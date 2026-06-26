@@ -1,0 +1,191 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "9b07a1f99817d61d9799",
+  "position": {
+    "x": 508.88888888888886,
+    "y": 280,
+    "z": 5000,
+    "height": 327.77777777777777,
+    "width": 771.11111111111109,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "treemap",
+    "query": {
+      "queryState": {
+        "Group": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promo_Channels"
+                    }
+                  },
+                  "Property": "ChannelName"
+                }
+              },
+              "queryRef": "Promo_Channels.ChannelName",
+              "nativeQueryRef": "ChannelName",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Promo Spend"
+                }
+              },
+              "queryRef": "_Measures.Total Promo Spend",
+              "nativeQueryRef": "Total Promo Spend"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 2,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "_Measures"
+                                    }
+                                  },
+                                  "Property": "Channel ROI %"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "400D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#00CC88'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "_Measures"
+                                        }
+                                      },
+                                      "Property": "Channel ROI %"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "200D"
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 3,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "_Measures"
+                                        }
+                                      },
+                                      "Property": "Channel ROI %"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "400D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F0A500'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 3,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "_Measures"
+                                    }
+                                  },
+                                  "Property": "Channel ROI %"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "200D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F05060'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

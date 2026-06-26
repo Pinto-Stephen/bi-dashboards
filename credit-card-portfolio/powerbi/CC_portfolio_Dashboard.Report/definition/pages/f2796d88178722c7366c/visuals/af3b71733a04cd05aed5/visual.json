@@ -1,0 +1,164 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "af3b71733a04cd05aed5",
+  "position": {
+    "x": 626.76708202108716,
+    "y": 280.78323976448036,
+    "z": 5000,
+    "height": 438.52663289059291,
+    "width": 649.90277967958377,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "shapeMap",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "cardholder_dim"
+                    }
+                  },
+                  "Property": "state"
+                }
+              },
+              "queryRef": "cardholder_dim.state",
+              "nativeQueryRef": "state"
+            }
+          ]
+        },
+        "Value": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Spend"
+                }
+              },
+              "queryRef": "_Measures.Total Spend",
+              "nativeQueryRef": "Total Spend"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "shape": [
+        {
+          "properties": {
+            "datasourceType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'file_upload'"
+                }
+              }
+            },
+            "mapUrl": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            },
+            "map": {
+              "geoJson": {
+                "type": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'shared'"
+                    }
+                  }
+                },
+                "name": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'usa.states.topo'"
+                    }
+                  }
+                },
+                "content": {
+                  "expr": {
+                    "ResourcePackageItem": {
+                      "PackageName": "SharedResources",
+                      "PackageType": 2,
+                      "ItemName": "usa.states.topo"
+                    }
+                  }
+                }
+              }
+            },
+            "projectionEnum": {
+              "expr": {
+                "Literal": {
+                  "Value": "'albersUsa'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fillRule": {
+              "linearGradient2": {
+                "min": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'minColor'"
+                      }
+                    }
+                  }
+                },
+                "max": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'maxColor'"
+                      }
+                    }
+                  }
+                },
+                "nullColoringStrategy": {
+                  "strategy": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'asZero'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

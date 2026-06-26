@@ -1,0 +1,115 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "f345204fd909048e9b13",
+  "position": {
+    "x": 968.5444337943311,
+    "y": 0,
+    "z": 3000,
+    "height": 280.78323976448036,
+    "width": 311.28029576886212,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "kpi",
+    "query": {
+      "queryState": {
+        "Goal": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Avg Balance Target"
+                }
+              },
+              "queryRef": "_Measures.Avg Balance Target",
+              "nativeQueryRef": "Avg Balance Target"
+            }
+          ]
+        },
+        "Indicator": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Avg Revolving Balance"
+                }
+              },
+              "queryRef": "_Measures.Avg Revolving Balance",
+              "nativeQueryRef": "Avg Revolving Balance"
+            }
+          ]
+        },
+        "TrendLine": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "monthly_performance"
+                    }
+                  },
+                  "Property": "month"
+                }
+              },
+              "queryRef": "monthly_performance.month",
+              "nativeQueryRef": "month"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "status": [
+        {
+          "properties": {
+            "goodColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#13FF0F'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Avg Revolving Balance'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

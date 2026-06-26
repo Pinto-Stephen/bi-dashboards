@@ -1,0 +1,383 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "25769cf0bb5aed300e02",
+  "position": {
+    "x": 19,
+    "y": 191,
+    "z": 0,
+    "height": 465,
+    "width": 621,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "route_dim"
+                    }
+                  },
+                  "Property": "route_id"
+                }
+              },
+              "queryRef": "route_dim.route_id",
+              "nativeQueryRef": "route_id",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "OTP Rate"
+                }
+              },
+              "queryRef": "Average Load Factor.Portfolio OTP",
+              "nativeQueryRef": "Portfolio OTP"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "OTP Rate"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "_Measures"
+                                        }
+                                      },
+                                      "Property": "OTP Rate"
+                                    }
+                                  },
+                                  "Right": {
+                                    "RangePercent": {
+                                      "Min": {
+                                        "ScopedEval": {
+                                          "Expression": {
+                                            "Aggregation": {
+                                              "Expression": {
+                                                "ScopedEval": {
+                                                  "Expression": {
+                                                    "Measure": {
+                                                      "Expression": {
+                                                        "SourceRef": {
+                                                          "Entity": "_Measures"
+                                                        }
+                                                      },
+                                                      "Property": "OTP Rate"
+                                                    }
+                                                  },
+                                                  "Scope": [
+                                                    {
+                                                      "AllRolesRef": {}
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "Function": 3
+                                            }
+                                          },
+                                          "Scope": []
+                                        }
+                                      },
+                                      "Max": {
+                                        "ScopedEval": {
+                                          "Expression": {
+                                            "Aggregation": {
+                                              "Expression": {
+                                                "ScopedEval": {
+                                                  "Expression": {
+                                                    "Measure": {
+                                                      "Expression": {
+                                                        "SourceRef": {
+                                                          "Entity": "_Measures"
+                                                        }
+                                                      },
+                                                      "Property": "OTP Rate"
+                                                    }
+                                                  },
+                                                  "Scope": [
+                                                    {
+                                                      "AllRolesRef": {}
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "Function": 4
+                                            }
+                                          },
+                                          "Scope": []
+                                        }
+                                      },
+                                      "Percent": 0.0074
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 3,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "_Measures"
+                                        }
+                                      },
+                                      "Property": "OTP Rate"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "1D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#16A34A'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "_Measures"
+                                        }
+                                      },
+                                      "Property": "OTP Rate"
+                                    }
+                                  },
+                                  "Right": {
+                                    "RangePercent": {
+                                      "Min": {
+                                        "ScopedEval": {
+                                          "Expression": {
+                                            "Aggregation": {
+                                              "Expression": {
+                                                "ScopedEval": {
+                                                  "Expression": {
+                                                    "Measure": {
+                                                      "Expression": {
+                                                        "SourceRef": {
+                                                          "Entity": "_Measures"
+                                                        }
+                                                      },
+                                                      "Property": "OTP Rate"
+                                                    }
+                                                  },
+                                                  "Scope": [
+                                                    {
+                                                      "AllRolesRef": {}
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "Function": 3
+                                            }
+                                          },
+                                          "Scope": []
+                                        }
+                                      },
+                                      "Max": {
+                                        "ScopedEval": {
+                                          "Expression": {
+                                            "Aggregation": {
+                                              "Expression": {
+                                                "ScopedEval": {
+                                                  "Expression": {
+                                                    "Measure": {
+                                                      "Expression": {
+                                                        "SourceRef": {
+                                                          "Entity": "_Measures"
+                                                        }
+                                                      },
+                                                      "Property": "OTP Rate"
+                                                    }
+                                                  },
+                                                  "Scope": [
+                                                    {
+                                                      "AllRolesRef": {}
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "Function": 4
+                                            }
+                                          },
+                                          "Scope": []
+                                        }
+                                      },
+                                      "Percent": 0.0070999999999999995
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 3,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "_Measures"
+                                        }
+                                      },
+                                      "Property": "OTP Rate"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "0.74D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F59E0B'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 3,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "_Measures"
+                                    }
+                                  },
+                                  "Property": "OTP Rate"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "0.71D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#DC2626'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.6D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.85D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'OTP by Route (%)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

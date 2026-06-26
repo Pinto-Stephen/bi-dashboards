@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "de2c57441c7eb8e41e24",
+  "position": {
+    "x": 325,
+    "y": 20,
+    "z": 1000,
+    "height": 195,
+    "width": 302,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "kpi",
+    "query": {
+      "queryState": {
+        "Goal": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Margin Target"
+                }
+              },
+              "queryRef": "_Measures.Margin Target",
+              "nativeQueryRef": "Margin Target"
+            }
+          ]
+        },
+        "Indicator": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Profit Margin"
+                }
+              },
+              "queryRef": "_Measures.Profit Margin",
+              "nativeQueryRef": "Profit Margin"
+            }
+          ]
+        },
+        "TrendLine": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "monthly_ops"
+                    }
+                  },
+                  "Property": "month"
+                }
+              },
+              "queryRef": "monthly_ops.month",
+              "nativeQueryRef": "month"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Portfolio Margin'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

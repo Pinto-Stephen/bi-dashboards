@@ -1,0 +1,58 @@
+table Promo_Channels
+	lineageTag: 3a90e08d-8e9e-402e-8c1f-588edd24c8c0
+
+	column ChannelID
+		dataType: string
+		lineageTag: ef8aac7a-e1e5-4ea4-9733-aa60a107257b
+		summarizeBy: none
+		sourceColumn: ChannelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChannelName
+		dataType: string
+		lineageTag: 35086b40-be97-48eb-8129-92b5452999f6
+		summarizeBy: none
+		sourceColumn: ChannelName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChannelType
+		dataType: string
+		lineageTag: 988fe639-4882-42a1-a7c7-c886a932e73d
+		summarizeBy: none
+		sourceColumn: ChannelType
+
+		annotation SummarizationSetBy = Automatic
+
+	column AvgCostPerContact
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ede305d-2496-4349-b04e-94cacfea7f9a
+		summarizeBy: none
+		sourceColumn: AvgCostPerContact
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Channel Type Color' = ```
+			
+			  IF(Promo_Channels[ChannelType] = "Personal", "#5B7FE8", "#00C9D7")
+			```
+		lineageTag: 2124f6da-e67e-4d4f-9bfb-1b7bfa8b0989
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Promo_Channels = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\steph\Downloads\pharma_sales_promo_data.xlsx"), null, true),
+				    Promo_Channels_Sheet = Source{[Item="Promo_Channels",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Promo_Channels_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ChannelID", type text}, {"ChannelName", type text}, {"ChannelType", type text}, {"AvgCostPerContact", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,72 @@
+table Calendar
+	lineageTag: 593b5429-524c-44d3-9eb8-69cef8f01255
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: cbe1daf2-bd8a-4d7c-a15b-5e177d75eb1f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: cbf167df-1749-4adb-97b3-b73478292fb5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		formatString: 0
+		lineageTag: 685ef1f0-e5d6-4918-bf12-44c077b5af43
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		lineageTag: 06fa70ed-3f02-4d30-ab96-1e048edfc24d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: a53d25f9-ad6c-4969-93fd-6be1a7abe4c6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		formatString: 0
+		lineageTag: e169c5ed-f616-4ca3-a171-78ce10e11cb8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    CALENDAR(DATE(2025, 6, 1), DATE(2026, 5, 31)),
+				    "Year",      YEAR([Date]),
+				    "Month",     MONTH([Date]),
+				    "MonthName", FORMAT([Date], "MMM 'YY"),
+				    "Quarter",   "Q" & QUARTER([Date]),
+				    "YearMonth", YEAR([Date]) * 100 + MONTH([Date])
+				)
+
+	annotation PBI_Id = d44b41dd24714ffbb30381c5f5853fff
+

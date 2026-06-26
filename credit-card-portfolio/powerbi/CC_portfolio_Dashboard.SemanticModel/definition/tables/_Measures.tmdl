@@ -1,0 +1,216 @@
+table _Measures
+	lineageTag: 21cc3b66-025b-4ad6-b92a-98b66f1aab52
+
+	measure 'Total Spend' = ```
+
+			    SUM(mcc_spend_monthly[spend_amount])
+			```
+		displayFolder: Spend
+		lineageTag: 7fad8b07-122b-40f3-a6d9-0d2e69205d20
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Spend per Cardholder' = ```
+
+			    DIVIDE(
+			        SUM(mcc_spend_monthly[spend_amount]),
+			        DISTINCTCOUNT(mcc_spend_monthly[cardholder_id])
+			    )
+			```
+		displayFolder: Spend
+		lineageTag: e8c2b884-a4e1-4602-ae87-cdae1c034b49
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Activation Rate' = ```
+
+			    DIVIDE(
+			        DISTINCTCOUNT(mcc_spend_monthly[cardholder_id]),
+			        [Total Cardholders]
+			    )
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Spend
+		lineageTag: 7f547ae0-418e-452d-b4e0-2d6c10168366
+
+	measure 'Revolve Rate' = ```
+
+			    AVERAGE(monthly_performance[revolve_flag])
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Risk & Delinquency
+		lineageTag: 31d04ea9-ca5d-4e5e-9b1b-43ab18f41c10
+
+	measure 'DPD 90+ Rate' = ```
+
+			    AVERAGEX(
+			        monthly_performance,
+			        IF(monthly_performance[dpd_bucket] = "90+", 1, 0)
+			    )
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Risk & Delinquency
+		lineageTag: 5b97c6c5-6e5d-4182-8e79-16dca51fc35b
+
+	measure 'Avg Revolving Balance' = ```
+
+			    AVERAGEX(
+			        FILTER(
+			            monthly_performance,
+			            monthly_performance[revolve_flag] = 1
+			        ),
+			        monthly_performance[outstanding_balance]
+			    )
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Receivables & Utilization
+		lineageTag: 66d026a9-c679-4c88-929b-ed3f057e7056
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Portfolio Utilization' = ```
+
+			    DIVIDE(
+			        AVERAGE(monthly_performance[outstanding_balance]),
+			        AVERAGE(cardholder_dim[credit_limit])
+			    )
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Receivables & Utilization
+		lineageTag: b72803c6-4771-4c0c-b877-f0981cd1c3c0
+
+	measure 'Default Rate' = ```
+
+			    AVERAGE(monthly_performance[charge_off_flag])
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Risk & Delinquency
+		lineageTag: 3d60e21c-8c02-4177-93ad-6cba0e3df438
+
+	measure 'Total Cardholders' = ```
+
+			    DISTINCTCOUNT(cardholder_dim[cardholder_id])
+			```
+		formatString: 0
+		displayFolder: Portfolio
+		lineageTag: 89eee198-7e5f-4768-a3db-d19156bc77c5
+
+	measure 'Avg Credit Limit' = ```
+
+			    AVERAGE(cardholder_dim[credit_limit])
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: Receivables & Utilization
+		lineageTag: 6ab12a7d-77ef-4b35-b4dd-1357fa491c13
+
+	measure 'Active Cards' = DISTINCTCOUNT(mcc_spend_monthly[cardholder_id])
+		formatString: 0
+		displayFolder: Spend
+		lineageTag: 9e7ec49b-3878-4dee-b1bf-b6f2a9e35854
+
+	measure 'Total Receivables' = ```
+
+			    CALCULATE(
+			        SUM(monthly_performance[outstanding_balance]),
+			        LASTNONBLANK(
+			            monthly_performance[month],
+			            CALCULATE(SUM(monthly_performance[outstanding_balance]))
+			        )
+			    )
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Receivables & Utilization
+		lineageTag: a7087177-1427-4b26-8928-a5b00cf12ef4
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Charge-Off Rate (Annualized)' = ```
+
+			    DIVIDE(
+			        SUM(monthly_performance[charge_off_amount]) * 12,
+			        SUM(monthly_performance[outstanding_balance])
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Risk & Delinquency
+		lineageTag: dff0a62b-9b6b-4532-8405-8b304d548339
+
+	measure 'DPD 30+ Rate' = ```
+
+			    DIVIDE(
+			        CALCULATE(
+			            COUNTROWS(monthly_performance),
+			            monthly_performance[dpd_bucket] IN {"30-59", "60-89", "90+"}
+			        ),
+			        COUNTROWS(monthly_performance)
+			    )
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Risk & Delinquency
+		lineageTag: 25de4fc6-a438-4eb2-bc76-c1dd07411540
+
+	measure 'DPD 60+ Rate' = ```
+
+			    DIVIDE(
+			        CALCULATE(
+			            COUNTROWS(monthly_performance),
+			            monthly_performance[dpd_bucket] IN {"60-89", "90+"}
+			        ),
+			        COUNTROWS(monthly_performance)
+			    )
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Risk & Delinquency
+		lineageTag: d64f3fff-1967-4afe-9144-717f537b7a04
+
+	measure 'Revolve Rate Target' = 0.38
+		displayFolder: Targets
+		lineageTag: 010c3aa0-f95f-4b81-93a9-671f6fc1d605
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'NCO Rate Target' = 0.028
+		displayFolder: Targets
+		lineageTag: 147be637-6004-49ee-8a4c-59754ed099b8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'DPD 90+ Target' = 0.015
+		displayFolder: Targets
+		lineageTag: 71242889-33f6-43e8-bb99-c7667a49d622
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Balance Target' = 4500
+		formatString: 0
+		displayFolder: Targets
+		lineageTag: e720581e-a54a-47c6-87f8-2de7c98008a9
+
+	measure 'Utilization Target' = 0.30
+		displayFolder: Targets
+		lineageTag: c3332258-0bcf-4ece-a801-a00c9a477e1c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Placeholder
+		dataType: string
+		isHidden
+		lineageTag: 469a55b0-8bed-4992-8d58-fbf0a54cb91d
+		summarizeBy: none
+		sourceColumn: Placeholder
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Placeholder = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Placeholder", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

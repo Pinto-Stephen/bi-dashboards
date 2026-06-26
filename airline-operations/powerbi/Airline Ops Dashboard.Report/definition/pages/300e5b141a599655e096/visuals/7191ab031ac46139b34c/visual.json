@@ -1,0 +1,111 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "7191ab031ac46139b34c",
+  "position": {
+    "x": 654.28571428571433,
+    "y": 10.714285714285715,
+    "z": 2000,
+    "height": 215.71428571428572,
+    "width": 292.14285714285717,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "kpi",
+    "query": {
+      "queryState": {
+        "Goal": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Fuel ASK Target"
+                }
+              },
+              "queryRef": "_Measures.Fuel ASK Target",
+              "nativeQueryRef": "Fuel ASK Target"
+            }
+          ]
+        },
+        "Indicator": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Fuel Per ASK"
+                }
+              },
+              "queryRef": "_Measures.Fuel Per ASK",
+              "nativeQueryRef": "Fuel Per ASK"
+            }
+          ]
+        },
+        "TrendLine": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "monthly_ops"
+                    }
+                  },
+                  "Property": "month"
+                }
+              },
+              "queryRef": "monthly_ops.month",
+              "nativeQueryRef": "month"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "status": [
+        {
+          "properties": {
+            "direction": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Negative'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Fuel Cost per ASK (₹)'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

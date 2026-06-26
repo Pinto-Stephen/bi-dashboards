@@ -1,0 +1,111 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "8c7e6601567c20b940da",
+  "position": {
+    "x": 352.85714285714289,
+    "y": 0,
+    "z": 4000,
+    "height": 178.57142857142858,
+    "width": 287.14285714285717,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "kpi",
+    "query": {
+      "queryState": {
+        "Goal": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Cancellation Target"
+                }
+              },
+              "queryRef": "_Measures.Cancellation Target",
+              "nativeQueryRef": "Cancellation Target"
+            }
+          ]
+        },
+        "Indicator": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Cancellation Rate"
+                }
+              },
+              "queryRef": "_Measures.Cancellation Rate",
+              "nativeQueryRef": "Cancellation Rate"
+            }
+          ]
+        },
+        "TrendLine": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "monthly_ops"
+                    }
+                  },
+                  "Property": "month"
+                }
+              },
+              "queryRef": "monthly_ops.month",
+              "nativeQueryRef": "month"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "status": [
+        {
+          "properties": {
+            "direction": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Negative'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cancellation Rate'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

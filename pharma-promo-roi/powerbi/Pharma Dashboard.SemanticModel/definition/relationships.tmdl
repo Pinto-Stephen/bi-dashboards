@@ -1,0 +1,32 @@
+relationship AutoDetected_d058c8bf-8a5b-4a19-8424-a0bdaba72ed1
+	fromColumn: Sales.PhysicianID
+	toColumn: Physicians.PhysicianID
+
+relationship AutoDetected_2778639a-cd69-4541-ab21-67034c692c24
+	fromColumn: Promo_Activities.PhysicianID
+	toColumn: Physicians.PhysicianID
+
+relationship AutoDetected_73b33370-67b7-4c3e-810c-b5a4b1966aec
+	fromColumn: Sales.ProductID
+	toColumn: Products.ProductID
+
+relationship AutoDetected_f96b869b-b821-4bca-8bbb-5acc6c7a537d
+	fromColumn: Promo_Activities.ChannelID
+	toColumn: Promo_Channels.ChannelID
+
+relationship 529c1079-8beb-9897-4aa7-3ff06c13b54f
+	fromColumn: Sales.Date
+	toColumn: Calendar.Date
+
+relationship 04951358-58fe-4e55-8846-af17e2cbb059
+	fromColumn: Promo_Activities.Date
+	toColumn: Calendar.Date
+
+relationship 2bab684b-c375-4c9e-ba73-f7dd96d7ae7b
+	fromColumn: Market_Benchmark.ChannelID
+	toColumn: Promo_Channels.ChannelID
+
+relationship d312aa8b-d2db-4fce-a2c3-0fe0c4838725
+	fromColumn: Market_Benchmark.Date
+	toColumn: Calendar.Date
+

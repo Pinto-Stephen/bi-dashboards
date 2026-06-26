@@ -1,0 +1,47 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "04bf2cdf3aa480d5a710",
+  "displayName": "On-Time Performance",
+  "displayOption": "ActualSize",
+  "height": 900,
+  "width": 1280,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F4F5F7'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "type": "Tooltip",
+  "visualInteractions": [
+    {
+      "source": "25769cf0bb5aed300e02",
+      "target": "f7efdbb284e0b6ee9039",
+      "type": "DataFilter"
+    },
+    {
+      "source": "25769cf0bb5aed300e02",
+      "target": "72faf65b3ec19096da78",
+      "type": "DataFilter"
+    }
+  ]
+}

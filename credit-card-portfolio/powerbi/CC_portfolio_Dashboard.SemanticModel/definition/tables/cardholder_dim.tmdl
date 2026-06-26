@@ -1,0 +1,73 @@
+table cardholder_dim
+	lineageTag: 66341ba2-394a-4d15-9a76-c674cbab245c
+
+	column cardholder_id
+		dataType: int64
+		formatString: 0
+		lineageTag: eefe877a-aea8-4106-94f5-a3e85fbe8f86
+		summarizeBy: none
+		sourceColumn: cardholder_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment
+		dataType: string
+		lineageTag: 3ef0c8a1-859e-47c9-8004-e2770e9a5760
+		summarizeBy: none
+		sourceColumn: segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_band
+		dataType: string
+		lineageTag: f4492d83-e942-44cd-80af-6d19ade86785
+		summarizeBy: none
+		sourceColumn: age_band
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: bcba1ca4-8f57-4488-a91c-43dc39884bc7
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_limit
+		dataType: int64
+		formatString: 0
+		lineageTag: 3898c66b-1a26-485a-9222-2fad04460f4c
+		summarizeBy: sum
+		sourceColumn: credit_limit
+
+		annotation SummarizationSetBy = Automatic
+
+	column open_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0caf1a5a-d3fb-492f-bfbc-9c0929fb9f10
+		summarizeBy: none
+		sourceColumn: open_date
+
+		variation Variation
+			isDefault
+			relationship: 23c08f2b-ee89-4cf1-891f-8e39593c63cb
+			defaultHierarchy: LocalDateTable_36e08be7-1506-4956-8252-c7a2c5b47987.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition cardholder_dim = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\steph\Downloads\cardholder_dim.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"cardholder_id", Int64.Type}, {"segment", type text}, {"age_band", type text}, {"state", type text}, {"credit_limit", Int64.Type}, {"open_date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

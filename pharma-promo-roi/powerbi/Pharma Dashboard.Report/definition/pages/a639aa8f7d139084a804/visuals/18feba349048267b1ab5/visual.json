@@ -1,0 +1,131 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "18feba349048267b1ab5",
+  "position": {
+    "x": 25.986916309496955,
+    "y": 755.06429054816158,
+    "z": 3000,
+    "height": 219.4450710579743,
+    "width": 613.57996841867816,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Physicians"
+                    }
+                  },
+                  "Property": "Segment"
+                }
+              },
+              "queryRef": "Physicians.Segment",
+              "nativeQueryRef": "Segment",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Physicians"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "Physicians.Region",
+              "nativeQueryRef": "Region",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Physicians"
+                    }
+                  },
+                  "Property": "Specialty"
+                }
+              },
+              "queryRef": "Physicians.Specialty",
+              "nativeQueryRef": "Specialty",
+              "active": false
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Values"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "Physicians.Segment"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Physicians"
+                    }
+                  },
+                  "Property": "Segment"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Physicians.Region"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Physicians.Specialty"
+            ],
+            "isCollapsed": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

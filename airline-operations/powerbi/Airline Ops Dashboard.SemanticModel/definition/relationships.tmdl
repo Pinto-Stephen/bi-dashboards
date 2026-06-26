@@ -1,0 +1,9 @@
+relationship 8243b139-8b59-41d9-8c70-bdb086d81619
+	joinOnDateBehavior: datePartOnly
+	fromColumn: monthly_ops.month
+	toColumn: LocalDateTable_1020730c-b7f0-4864-852d-91ea4dc18ed1.Date
+
+relationship AutoDetected_a0c5fdb5-5ef4-4112-a4be-694af23f459d
+	fromColumn: monthly_ops.route_id
+	toColumn: route_dim.route_id
+

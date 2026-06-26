@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "eb09329649b24aa7a045",
+  "position": {
+    "x": 326.00301246063259,
+    "y": 0,
+    "z": 1000,
+    "height": 280.78323976448036,
+    "width": 314.43516363138434,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "kpi",
+    "query": {
+      "queryState": {
+        "Goal": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "NCO Rate Target"
+                }
+              },
+              "queryRef": "_Measures.NCO Rate Target",
+              "nativeQueryRef": "NCO Rate Target"
+            }
+          ]
+        },
+        "Indicator": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Default Rate"
+                }
+              },
+              "queryRef": "_Measures.Default Rate",
+              "nativeQueryRef": "Default Rate"
+            }
+          ]
+        },
+        "TrendLine": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "monthly_performance"
+                    }
+                  },
+                  "Property": "month"
+                }
+              },
+              "queryRef": "monthly_performance.month",
+              "nativeQueryRef": "month"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "status": [
+        {
+          "properties": {
+            "direction": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Negative'"
+                }
+              }
+            },
+            "goodColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#13FF0F'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Net Charge-off Rate'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

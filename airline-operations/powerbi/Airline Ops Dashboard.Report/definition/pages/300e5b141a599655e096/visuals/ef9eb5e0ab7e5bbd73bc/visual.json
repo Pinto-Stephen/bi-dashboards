@@ -1,0 +1,111 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "ef9eb5e0ab7e5bbd73bc",
+  "position": {
+    "x": 317.33333333333331,
+    "y": 10.666666666666666,
+    "z": 1000,
+    "height": 216,
+    "width": 307.33333333333331,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "kpi",
+    "query": {
+      "queryState": {
+        "Goal": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "ATF Target"
+                }
+              },
+              "queryRef": "_Measures.ATF Target",
+              "nativeQueryRef": "ATF Target"
+            }
+          ]
+        },
+        "Indicator": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Avg ATF Price"
+                }
+              },
+              "queryRef": "_Measures.Avg ATF Price",
+              "nativeQueryRef": "Avg ATF Price"
+            }
+          ]
+        },
+        "TrendLine": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "monthly_ops"
+                    }
+                  },
+                  "Property": "month"
+                }
+              },
+              "queryRef": "monthly_ops.month",
+              "nativeQueryRef": "month"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "status": [
+        {
+          "properties": {
+            "direction": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Negative'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Avg ATF Price (₹/L)'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

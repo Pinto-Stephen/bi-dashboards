@@ -1,0 +1,283 @@
+table _Measures
+	lineageTag: c98c1b5e-c904-4bb5-b446-6587499cdc34
+
+	measure 'Total Revenue' = ```
+
+			    SUM(Sales[Revenue])
+			```
+		displayFolder: Sales
+		lineageTag: f62c1bcd-0b7b-4057-8b9b-cdb1aafe2c71
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Units' = ```
+
+			    SUM(Sales[Units])
+			```
+		formatString: 0
+		displayFolder: Sales
+		lineageTag: 7c926416-fe2a-4ea1-a4e5-7267f891d760
+
+	measure 'Active Physicians' = ```
+
+			    DISTINCTCOUNT(Sales[PhysicianID])
+
+			```
+		formatString: 0
+		displayFolder: Physician
+		lineageTag: 876da9f7-df39-4f93-8738-60c3e68ee8cb
+
+	measure 'Revenue Per Physician' = ```
+
+			    DIVIDE([Total Revenue], [Active Physicians])
+
+			```
+		displayFolder: Physician
+		lineageTag: 7a22ac79-c361-4e4d-8ae7-38a5240653dc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Unit Price' = ```
+
+			    DIVIDE([Total Revenue], [Total Units])
+			```
+		displayFolder: Sales
+		lineageTag: 340a161e-35cb-4ebf-8e6b-258b19923625
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Promo Spend' = ```
+
+			    SUM(Promo_Activities[Cost])
+			```
+		displayFolder: Promotion ROI
+		lineageTag: 8659c53e-ef65-44cf-9daf-ad4b3c7a9d16
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Attributed Revenue' = ```
+
+			    SUM(Promo_Activities[AttributedRevenue])
+
+			```
+		displayFolder: Promotion ROI
+		lineageTag: 1a5630c3-6a15-441c-bd72-2c7ba8a6ca4c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Channel ROI %' = ```
+
+			    DIVIDE(
+			        [Total Attributed Revenue] - [Total Promo Spend],
+			        [Total Promo Spend]
+			    ) * 100
+
+			```
+		displayFolder: Promotion ROI
+		lineageTag: 0e375a81-dc92-4396-bad1-3bdb183d9586
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Channel ROI %' = ```
+
+			    AVERAGEX(
+			        VALUES(Promo_Channels[ChannelName]),
+			        CALCULATE([Channel ROI %])
+			    )
+
+			```
+		displayFolder: Promotion ROI
+		lineageTag: 69f53fc0-ac2c-4d90-82bf-4b98c0e46ae8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ROI Tier' = ```
+
+			    SWITCH(TRUE(),
+			        [Channel ROI %] >= 400, "High ROI",
+			        [Channel ROI %] >= 200, "Medium ROI",
+			        "Low ROI"
+			    )
+
+			```
+		displayFolder: Promotion ROI
+		lineageTag: d3f8b303-bad6-4ad1-b294-a33f130efad3
+
+	measure 'Promo Spend Per Physician' = ```
+
+			    DIVIDE([Total Promo Spend], [Active Physicians])
+
+			```
+		displayFolder: Promotion ROI
+		lineageTag: 87312a34-b876-4219-8ef3-be96f5d3d605
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue Per Promo Dollar' = ```
+
+			    DIVIDE([Total Attributed Revenue], [Total Promo Spend])
+			```
+		displayFolder: Promotion ROI
+		lineageTag: fe98a3b5-06f6-4326-a9ef-532260a8bf9a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'HV Revenue Share' = ```
+
+			    DIVIDE(
+			        CALCULATE([Total Revenue], Physicians[Segment] = "High Value"),
+			        [Total Revenue]
+			    )
+			```
+		displayFolder: Physician
+		lineageTag: 065145d7-f8f5-487f-90db-6ce4b34367b6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Top 5 Physician Revenue' = ```
+
+			    CALCULATE(
+			        [Total Revenue],
+			        TOPN(5, VALUES(Physicians[PhysicianID]), [Total Revenue])
+			    )
+			```
+		displayFolder: Physician
+		lineageTag: 418bd85e-826a-489c-aa63-764a545a9df3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Physician Revenue Rank' = ```
+
+			    RANKX(
+			        ALL(Physicians[Name]),
+			        [Total Revenue],
+			        ,
+			        DESC,
+			        DENSE
+			    )
+			```
+		formatString: 0
+		displayFolder: Physician
+		lineageTag: 917b65be-89c6-4e12-ac4a-4c3cf2817b60
+
+	measure 'Revenue MoM %' =
+
+			VAR Cur = [Total Revenue]
+			VAR Pri = CALCULATE([Total Revenue], DATEADD(Calendar[Date], -1, MONTH))
+			RETURN
+			    IF(ISBLANK(Pri), BLANK(), DIVIDE(Cur - Pri, Pri))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Time Intelligence
+		lineageTag: ff1411c2-85ee-45a9-a454-98433909f166
+
+	measure 'Revenue YoY %' =
+
+			VAR Cur = [Total Revenue]
+			VAR Pri = CALCULATE([Total Revenue], DATEADD(Calendar[Date], -12, MONTH))
+			RETURN
+			    IF(ISBLANK(Pri), BLANK(), DIVIDE(Cur - Pri, Pri))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Time Intelligence
+		lineageTag: 5e9e1ecf-fd76-4dfe-8b8d-92bb59625819
+
+	measure 'Personal Channel ROI %' =
+
+			CALCULATE(
+			    DIVIDE(
+			        SUM(Promo_Activities[AttributedRevenue]) - SUM(Promo_Activities[Cost]),
+			        SUM(Promo_Activities[Cost])
+			    ) * 100,
+			    Promo_Channels[ChannelType] = "Personal"
+			)
+		displayFolder: Channel
+		lineageTag: 26da433e-aa63-4d19-841d-a93f6c7ff339
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'NonPersonal Channel ROI %' =
+
+			CALCULATE(
+			    DIVIDE(
+			        SUM(Promo_Activities[AttributedRevenue]) - SUM(Promo_Activities[Cost]),
+			        SUM(Promo_Activities[Cost])
+			    ) * 100,
+			    Promo_Channels[ChannelType] = "Non-Personal"
+			)
+		displayFolder: Channel
+		lineageTag: 00c930b4-5402-4260-a8aa-8f74276adff4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Personal Promo Spend' =
+
+			CALCULATE(
+			    SUM(Promo_Activities[Cost]),
+			    Promo_Channels[ChannelType] = "Personal"
+			)
+		displayFolder: Channel
+		lineageTag: fd84e2db-9203-4368-b27e-8b86e8ba3300
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'NonPersonal Promo Spend' =
+
+			CALCULATE(
+			    SUM(Promo_Activities[Cost]),
+			    Promo_Channels[ChannelType] = "Non-Personal"
+			)
+		displayFolder: Channel
+		lineageTag: eb86408f-5b38-494f-8de7-8bbb08675ab9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AVG. Revenue' = ```
+
+			    AVERAGE(Sales[Revenue])
+			```
+		displayFolder: Sales
+		lineageTag: 560f89c4-ffc5-4437-a67b-54a12c99f61e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Personal Calls' = CALCULATE ( COUNTROWS ( Promo_Activities ), Promo_Channels[ChannelType] = "Personal" )
+		formatString: #,##0
+		displayFolder: Channel
+		lineageTag: 777ff7c6-5d99-4ad6-82d8-02dbb31bc859
+
+	measure 'Sales per Call' = DIVIDE ( [Total Revenue], [Personal Calls] )
+		formatString: \$#,##0.00;(\$#,##0.00);\$#,##0.00
+		displayFolder: Promotion ROI
+		lineageTag: a7da8ac4-8610-4fa9-88ac-3fdd9e0dc8a4
+
+	measure 'Brand Reach' = SUM ( Promo_Activities[Reach] )
+		formatString: #,##0
+		displayFolder: Market Presence
+		lineageTag: f23aff22-8f41-4ad4-a271-41771da28883
+
+	measure 'Market Reach' = SUM ( Market_Benchmark[MarketReach] )
+		formatString: #,##0
+		displayFolder: Market Presence
+		lineageTag: 0842a260-bafa-4455-afb9-02b3b1300c12
+
+	measure 'Share of Voice %' = DIVIDE ( [Brand Reach], [Market Reach] )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Market Presence
+		lineageTag: 15db64ae-aecd-4bb8-bc69-fef8486a2756
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 8319cb8c-c308-4a6c-bc00-3ef41c349917
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 163ad77000114498ab3054abb379c43e
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}

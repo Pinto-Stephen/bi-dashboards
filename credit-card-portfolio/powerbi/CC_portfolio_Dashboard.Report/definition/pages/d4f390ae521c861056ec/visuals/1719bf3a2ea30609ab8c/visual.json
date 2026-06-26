@@ -1,0 +1,134 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "1719bf3a2ea30609ab8c",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 279.7316171436396,
+    "width": 326.00301246063259,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "kpi",
+    "query": {
+      "queryState": {
+        "Goal": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Revolve Rate Target"
+                }
+              },
+              "queryRef": "_Measures.Revolve Rate Target",
+              "nativeQueryRef": "Revolve Rate Target"
+            }
+          ]
+        },
+        "Indicator": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Revolve Rate"
+                }
+              },
+              "queryRef": "_Measures.Revolve Rate",
+              "nativeQueryRef": "Revolve Rate"
+            }
+          ]
+        },
+        "TrendLine": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mcc_spend_monthly"
+                    }
+                  },
+                  "Property": "month"
+                }
+              },
+              "queryRef": "mcc_spend_monthly.month",
+              "nativeQueryRef": "month"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "status": [
+        {
+          "properties": {
+            "direction": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Negative'"
+                }
+              }
+            },
+            "goodColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#13FF0F'"
+                    }
+                  }
+                }
+              }
+            },
+            "badColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Portfolio Revolve Rate'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

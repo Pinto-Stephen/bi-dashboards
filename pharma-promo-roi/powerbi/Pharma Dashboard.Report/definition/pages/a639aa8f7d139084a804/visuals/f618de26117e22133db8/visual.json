@@ -1,0 +1,100 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "f618de26117e22133db8",
+  "position": {
+    "x": 687.20956462891945,
+    "y": 356.59824046920824,
+    "z": 2000,
+    "height": 379.6977216332055,
+    "width": 565.93728851793367,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promo_Channels"
+                    }
+                  },
+                  "Property": "ChannelName"
+                }
+              },
+              "queryRef": "Promo_Channels.ChannelName",
+              "nativeQueryRef": "ChannelName",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Promo_Activities"
+                        }
+                      },
+                      "Property": "Cost"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Promo_Activities.Cost)",
+              "nativeQueryRef": "Sum of Cost"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Promo_Activities"
+                      }
+                    },
+                    "Property": "Cost"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Promo Channel Mix'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

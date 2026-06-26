@@ -1,0 +1,95 @@
+table monthly_performance
+	lineageTag: bed63f5b-f382-49d9-8fe1-c40e8b68a391
+
+	column cardholder_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b2a03cf-59f3-4a5d-926e-8eee6ed1931c
+		summarizeBy: none
+		sourceColumn: cardholder_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0182f64b-b401-4483-ba79-de8b7feeaa9d
+		summarizeBy: none
+		sourceColumn: month
+
+		variation Variation
+			isDefault
+			relationship: 4cea290e-6203-4988-933e-29fd9343d34a
+			defaultHierarchy: LocalDateTable_52a4db7c-bc8a-4ceb-bb68-9157206c7f55.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column revolve_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 420bdacc-85d8-4e0c-a068-9bd1ffb7b727
+		summarizeBy: sum
+		sourceColumn: revolve_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column outstanding_balance
+		dataType: double
+		lineageTag: ecb4ed61-47e1-460c-a0db-209b3a86fcf9
+		summarizeBy: sum
+		sourceColumn: outstanding_balance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column payment_amount
+		dataType: double
+		lineageTag: 1458ace2-d2ee-4ced-9e16-c2ea356345d2
+		summarizeBy: sum
+		sourceColumn: payment_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column charge_off_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: f1d98254-b9b7-4b7d-8146-15bbdcba9af8
+		summarizeBy: sum
+		sourceColumn: charge_off_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column charge_off_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 79687387-224c-48ee-b7ad-c934b18f44f5
+		summarizeBy: sum
+		sourceColumn: charge_off_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column dpd_bucket
+		dataType: string
+		lineageTag: b204a821-c5fb-4c69-aaec-5a67cf886923
+		summarizeBy: none
+		sourceColumn: dpd_bucket
+
+		annotation SummarizationSetBy = Automatic
+
+	partition monthly_performance = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\steph\Downloads\monthly_performance.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"cardholder_id", Int64.Type}, {"month", type date}, {"revolve_flag", Int64.Type}, {"outstanding_balance", type number}, {"payment_amount", type number}, {"charge_off_flag", Int64.Type}, {"charge_off_amount", Int64.Type}, {"dpd_bucket", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

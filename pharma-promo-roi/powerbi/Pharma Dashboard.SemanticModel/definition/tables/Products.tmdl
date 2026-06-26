@@ -1,0 +1,49 @@
+table Products
+	lineageTag: 9390065d-3759-43d2-8929-28ad67a998f8
+
+	column ProductID
+		dataType: string
+		lineageTag: d7e7f4b9-3145-4b9f-a5b0-211d12ac2e19
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 375b9f43-9a74-41b4-a823-c851a90b5a32
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column TherapeuticArea
+		dataType: string
+		lineageTag: 30f4d62c-f1f1-422e-ac56-9957f0a3a377
+		summarizeBy: none
+		sourceColumn: TherapeuticArea
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: int64
+		formatString: 0
+		lineageTag: f56c3e88-6de9-4824-a73e-cee9c930b456
+		summarizeBy: none
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Products = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\steph\Downloads\pharma_sales_promo_data.xlsx"), null, true),
+				    Products_Sheet = Source{[Item="Products",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Products_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductID", type text}, {"ProductName", type text}, {"TherapeuticArea", type text}, {"UnitPrice", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

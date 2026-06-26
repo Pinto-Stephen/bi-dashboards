@@ -1,0 +1,22 @@
+model Model
+	culture: en-IN
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["route_dim","monthly_ops"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table route_dim
+ref table monthly_ops
+ref table DateTableTemplate_97760c63-b425-412f-b396-46aefdb48663
+ref table LocalDateTable_1020730c-b7f0-4864-852d-91ea4dc18ed1
+ref table _Measures
+
+ref cultureInfo en-IN
+

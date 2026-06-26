@@ -1,0 +1,101 @@
+table Physicians
+	lineageTag: af40b2ef-1822-4da1-9aa1-3ffc5b132ba5
+
+	column PhysicianID
+		dataType: string
+		lineageTag: 0e933092-794d-4258-beca-9889974de908
+		summarizeBy: none
+		sourceColumn: PhysicianID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: fb45e2e4-c0ef-40d3-accb-9693cf3bf910
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Specialty
+		dataType: string
+		lineageTag: 088f4b41-25c5-4010-8027-01c6a3f84aca
+		summarizeBy: none
+		sourceColumn: Specialty
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerritoryID
+		dataType: string
+		lineageTag: 37820b65-4a8f-4b16-be38-1eb68c48d5ad
+		summarizeBy: none
+		sourceColumn: TerritoryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 956a98ed-7021-43f7-9767-7b172409b917
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Decile
+		dataType: int64
+		formatString: 0
+		lineageTag: c8314fd5-f200-47a6-89c8-adfb510a9224
+		summarizeBy: sum
+		sourceColumn: Decile
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 531e351d-4f20-4cec-b219-a70e672eb2ca
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Segment Color' = ```
+			
+			  SWITCH(Physicians[Segment],
+			    "High Value", "#5B7FE8",
+			    "Mid Value",  "#00C9D7",
+			    "Low Value",  "#7B9ACC"
+			  )
+			```
+		lineageTag: 6a362270-64f5-4a65-bfc4-6410617a4c2f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Specialty Color' = ```
+			
+			  SWITCH(Physicians[Specialty],
+			    "Oncology",     "#E85B9A",
+			    "Cardiology",   "#5B7FE8",
+			    "Pulmonology",  "#00C9D7",
+			    "Neurology",    "#F0A500",
+			    "Rheumatology", "#B06AF0"
+			  )
+			```
+		lineageTag: d4308d43-2418-4237-9703-a937e39e48ab
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Physicians = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\steph\Downloads\pharma_sales_promo_data.xlsx"), null, true),
+				    Physicians_Sheet = Source{[Item="Physicians",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Physicians_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PhysicianID", type text}, {"Name", type text}, {"Specialty", type text}, {"TerritoryID", type text}, {"Region", type text}, {"Decile", Int64.Type}, {"Segment", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,241 @@
+table _Measures
+	lineageTag: f3b759ff-9cd2-4514-b2af-14ff0d90d3c7
+
+	measure 'Scheduled Flights' = SUM('monthly_ops'[scheduled_flights])
+		formatString: 0
+		displayFolder: Reliability
+		lineageTag: 0af5a1c7-5d35-4739-a1a8-93b39bcdbcb6
+
+	measure 'Operated Flights' = SUM('monthly_ops'[operated_flights])
+		formatString: 0
+		displayFolder: Reliability
+		lineageTag: b1347db4-c119-4d15-a78a-e869ff92f974
+
+	measure 'Cancelled Flights' = SUM('monthly_ops'[cancelled_flights])
+		formatString: 0
+		displayFolder: Reliability
+		lineageTag: a6df38d7-3f7d-476d-9e0b-496926443784
+
+	measure 'On-Time Flights' = SUM('monthly_ops'[on_time_flights])
+		formatString: 0
+		displayFolder: Reliability
+		lineageTag: 6685f0f1-811f-45bb-84f9-f97752c87a7d
+
+	measure 'OTP Rate' = ```
+			
+			    DIVIDE(
+			        SUM(monthly_ops[on_time_flights]),
+			        SUM(monthly_ops[operated_flights])
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Reliability
+		lineageTag: b79eeb4a-2d2c-4b6d-952e-7502b7e02cb7
+
+	measure 'Cancellation Rate' = ```
+			
+			    DIVIDE(
+			        SUM(monthly_ops[cancelled_flights]),
+			        SUM(monthly_ops[scheduled_flights])
+			    )
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Reliability
+		lineageTag: 5397a82c-5f24-46d7-a672-544562828f28
+
+	measure 'Fuel Cost Cr' = ```
+			
+			    DIVIDE(SUM(monthly_ops[fuel_cost_inr]), 10000000)
+			```
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: Fuel
+		lineageTag: 12b2f7cb-3c0f-47e2-a809-1603050e1831
+
+		annotation PBI_FormatHint = {"currencyCulture":"kn-IN"}
+
+	measure 'Fuel Share of Op Cost' =
+			
+			DIVIDE(
+			    SUM('monthly_ops'[fuel_cost_inr]),
+			    SUM('monthly_ops'[total_op_cost_inr]),
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Fuel
+		lineageTag: 959f6dea-4ab3-4d8a-978a-c02341b7ce17
+
+	measure 'Weighted Avg ATF Price' =
+			
+			DIVIDE(
+			    SUM('monthly_ops'[fuel_cost_inr]),
+			    SUM('monthly_ops'[fuel_consumed_liters]),
+			    0
+			)
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		displayFolder: Fuel
+		lineageTag: 226510bf-1425-4217-afe1-a14f12376e2d
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Fuel Per ASK' = ```
+			
+			    DIVIDE(
+			        SUM(monthly_ops[fuel_cost_inr]),
+			        SUM(monthly_ops[available_seat_km])
+			    )
+			```
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		displayFolder: Fuel
+		lineageTag: 5089e82f-9551-4e8a-8a3b-5062f0b89ae3
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Total Revenue Cr' = ```
+			
+			    DIVIDE(SUM(monthly_ops[revenue_inr]), 10000000)
+			```
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		displayFolder: Profitability
+		lineageTag: be209d69-e8c7-4c62-ae6e-edefdb7668a0
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Operating Profit (Cr)' = SUM('monthly_ops'[operating_profit_inr]) / 10000000
+		displayFolder: Profitability
+		lineageTag: 6f726b72-3e9a-4287-b23f-285291b1b4e0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Load Factor' = ```
+			
+			    AVERAGE(monthly_ops[avg_load_factor])
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Capacity & Demand
+		lineageTag: 851aab26-b3bc-49d0-8f7c-41a52a73c087
+
+	measure 'Avg Delay Target' = 38
+		formatString: 0
+		displayFolder: Targets
+		lineageTag: 7a141da6-eff0-4d10-bd04-9a7965b3b5df
+
+	measure 'Margin Target' = 0.03
+		displayFolder: Targets
+		lineageTag: 60776588-307d-4cb1-a658-f16b464655cb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ATF Target' = 94.0
+		displayFolder: Targets
+		lineageTag: 1bd000d7-17f5-4fe3-a8ef-95d37c27bafe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'OTP Target' = 0.731
+		displayFolder: Targets
+		lineageTag: f631a973-8a40-4fd9-9983-e0d83b70cea7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cancellation Target' = 0.025
+		displayFolder: Targets
+		lineageTag: e0a28009-c919-4af2-bb59-b9c3070ccfc1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Delay Minutes' = ```
+			
+			    DIVIDE(
+			        SUM(monthly_ops[delayed_15_45_min]) * 30 +
+			        SUM(monthly_ops[delayed_45_90_min]) * 67 +
+			        SUM(monthly_ops[delayed_90plus_min]) * 105,
+			        SUM(monthly_ops[delayed_15_45_min]) +
+			        SUM(monthly_ops[delayed_45_90_min]) +
+			        SUM(monthly_ops[delayed_90plus_min])
+			    )
+			```
+		formatString: 0
+		displayFolder: Reliability
+		lineageTag: e99f2500-2801-412e-a86a-8854c52a58d5
+
+	measure 'Avg ATF Price' = ```
+			
+			    AVERAGE(monthly_ops[atf_price_per_liter])
+			```
+		displayFolder: Fuel
+		lineageTag: 30d65e76-7d27-4ee7-9df3-0f4298146e22
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit Margin' = ```
+			
+			    DIVIDE(
+			        SUM(monthly_ops[operating_profit_inr]),
+			        SUM(monthly_ops[revenue_inr])
+			    )
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Profitability
+		lineageTag: 4cc8d9e0-e58f-4ecd-b54b-7675967894f0
+
+	measure 'Load Factor Target' = 0.86
+		displayFolder: Targets
+		lineageTag: d20e8c1b-10ac-4e8b-a068-28060742e36a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RASK = ```
+			
+			    DIVIDE(
+			        SUM(monthly_ops[revenue_inr]),
+			        SUM(monthly_ops[available_seat_km])
+			    )
+			```
+		formatString: 0.00
+		displayFolder: Capacity & Demand
+		lineageTag: de5d8ea7-6b0c-495d-b34a-6a48a6673c13
+
+	measure 'Fuel Cost Target' = 270
+		formatString: 0
+		displayFolder: Targets
+		lineageTag: b241761b-e158-4bb3-886a-58ef6ad5dd94
+
+	measure 'Fuel ASK Target' = 1.75
+		displayFolder: Targets
+		lineageTag: 68ae63f1-e7ed-4b84-8ab8-ad784823a33b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CASK = ```
+			
+			    DIVIDE(
+			        SUM(monthly_ops[total_op_cost_inr]),
+			        SUM(monthly_ops[available_seat_km])
+			    )
+			```
+		formatString: 0.00
+		displayFolder: Capacity & Demand
+		lineageTag: 812de651-baf5-4504-9b36-590ef94a0747
+
+	measure 'RASK-CASK Spread' = [RASK] - [CASK]
+		formatString: 0.00
+		displayFolder: Capacity & Demand
+		lineageTag: 37185efd-37d1-4b1a-b08f-87bbf70a99f2
+
+	column Placeholder
+		formatString: 0
+		lineageTag: 6bd2e3c6-d40e-41aa-afe6-9e623410c825
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Placeholder]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = Row("Placeholder", BLANK())
+
+	annotation PBI_Id = 3ff630b57fc24470abe96f954dd07cf0
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

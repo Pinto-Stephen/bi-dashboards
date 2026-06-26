@@ -1,0 +1,77 @@
+table Sales
+	lineageTag: 5c2a589d-2f8a-4bd0-9b3b-e6d1439b7393
+
+	column SaleID
+		dataType: string
+		lineageTag: 32dec982-caed-4c16-bbb2-d114e21bc371
+		summarizeBy: none
+		sourceColumn: SaleID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 596c90af-93ee-4d4f-b866-1a518c274645
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column PhysicianID
+		dataType: string
+		lineageTag: 9b45e456-da5d-46d3-9ade-ad44699e35f5
+		summarizeBy: none
+		sourceColumn: PhysicianID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: string
+		lineageTag: d9a76694-48c9-4f51-b824-cef06d6bc7a4
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Units
+		dataType: int64
+		formatString: 0
+		lineageTag: a6ecceb3-64a7-4c46-8152-81759577ebad
+		summarizeBy: sum
+		sourceColumn: Units
+
+		annotation SummarizationSetBy = Automatic
+
+	column Revenue
+		dataType: double
+		lineageTag: 685c6fa9-1339-494e-a9b8-e8b313f907c4
+		summarizeBy: sum
+		sourceColumn: Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SalesRepID
+		dataType: string
+		lineageTag: 2cc2e29a-4e86-4b4e-ae73-e1f693b0577a
+		summarizeBy: none
+		sourceColumn: SalesRepID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\steph\Downloads\pharma_sales_promo_data.xlsx"), null, true),
+				    Sales_Sheet = Source{[Item="Sales",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sales_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SaleID", type text}, {"Date", Int64.Type}, {"PhysicianID", type text}, {"ProductID", type text}, {"Units", Int64.Type}, {"Revenue", type number}, {"SalesRepID", type text}}),
+				    #"Converted Date" = Table.TransformColumns(#"Changed Type", {{"Date", Date.From, type date}})
+				in
+				    #"Converted Date"
+
+	annotation PBI_ResultType = Table
+

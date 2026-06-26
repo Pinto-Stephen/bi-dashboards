@@ -1,0 +1,113 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "5f47a636a6630e6510ac",
+  "position": {
+    "x": 668,
+    "y": 608,
+    "z": 3000,
+    "height": 392,
+    "width": 583,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Attributed Revenue"
+                }
+              },
+              "queryRef": "_Measures.Total Attributed Revenue",
+              "nativeQueryRef": "Total Attributed Revenue"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Promo Spend"
+                }
+              },
+              "queryRef": "_Measures.Total Promo Spend",
+              "nativeQueryRef": "Total Promo Spend",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Channel ROI %"
+                }
+              },
+              "queryRef": "_Measures.Channel ROI %",
+              "nativeQueryRef": "Channel ROI %"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Promo_Channels"
+                            }
+                          },
+                          "Property": "Channel Type Color"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

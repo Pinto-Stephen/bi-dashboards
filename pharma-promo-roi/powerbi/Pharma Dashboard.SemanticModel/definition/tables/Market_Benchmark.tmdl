@@ -1,0 +1,74 @@
+table Market_Benchmark
+	lineageTag: b4847c9c-2fab-4575-8abc-69d0fa0a3266
+
+	column ChannelID
+		dataType: string
+		lineageTag: 41fc9b54-1e89-4949-aef4-29a03d87dbb5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ChannelID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 38a1ed12-e676-41e3-8154-9956e9959e0f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MarketReach
+		dataType: double
+		lineageTag: 5dd5b2c5-3a6a-45ce-aed9-6ca768009515
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [MarketReach]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Market_Benchmark = calculated
+		mode: import
+		source =
+				// SYNTHETIC competitive benchmark, generated in-model, not real market data.
+				// Grain: ChannelID x month-start Date. MarketReach is seeded deterministically
+				// so brand Reach lands at roughly 15 to 30 percent share, varying by channel and month.
+				VAR Channels =
+				    DISTINCT ( SELECTCOLUMNS ( Promo_Activities, "ChannelID", Promo_Activities[ChannelID] ) )
+				VAR Months =
+				    DISTINCT (
+				        SELECTCOLUMNS (
+				            Promo_Activities,
+				            "Date", DATE ( YEAR ( Promo_Activities[Date] ), MONTH ( Promo_Activities[Date] ), 1 )
+				        )
+				    )
+				VAR Grid = CROSSJOIN ( Channels, Months )
+				RETURN
+				    ADDCOLUMNS (
+				        Grid,
+				        "MarketReach",
+				            VAR ch = [ChannelID]
+				            VAR mo = [Date]
+				            VAR brand =
+				                SUMX (
+				                    FILTER (
+				                        Promo_Activities,
+				                        Promo_Activities[ChannelID] = ch
+				                            && DATE ( YEAR ( Promo_Activities[Date] ), MONTH ( Promo_Activities[Date] ), 1 ) = mo
+				                    ),
+				                    Promo_Activities[Reach]
+				                )
+				            VAR chNum =
+				                SUMX (
+				                    GENERATESERIES ( 1, LEN ( ch ) ),
+				                    UNICODE ( MID ( ch, [Value], 1 ) )
+				                )
+				            VAR seed = MOD ( chNum * 31 + YEAR ( mo ) * 12 + MONTH ( mo ) * 7, 16 )
+				            VAR share = 0.15 + DIVIDE ( seed, 100 )
+				            RETURN DIVIDE ( brand, share )
+				    )
+
+	annotation PBI_ResultType = Table
+

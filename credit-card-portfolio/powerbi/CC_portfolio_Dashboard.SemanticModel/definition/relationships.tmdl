@@ -1,0 +1,23 @@
+relationship 23c08f2b-ee89-4cf1-891f-8e39593c63cb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: cardholder_dim.open_date
+	toColumn: LocalDateTable_36e08be7-1506-4956-8252-c7a2c5b47987.Date
+
+relationship 09cc39d6-7e82-4fd7-a3c1-cca1978ff05c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: mcc_spend_monthly.month
+	toColumn: LocalDateTable_389bdf88-f605-4cab-b436-62f75caa4d44.Date
+
+relationship AutoDetected_19745d71-ee34-4918-8add-9cabc02551f4
+	fromColumn: mcc_spend_monthly.cardholder_id
+	toColumn: cardholder_dim.cardholder_id
+
+relationship 4cea290e-6203-4988-933e-29fd9343d34a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: monthly_performance.month
+	toColumn: LocalDateTable_52a4db7c-bc8a-4ceb-bb68-9157206c7f55.Date
+
+relationship AutoDetected_54db26ee-fd31-41fe-886b-a3e9e83407dc
+	fromColumn: monthly_performance.cardholder_id
+	toColumn: cardholder_dim.cardholder_id
+

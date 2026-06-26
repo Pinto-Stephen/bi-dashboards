@@ -1,0 +1,184 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "7721ec7d03b3b6b1844a",
+  "position": {
+    "x": 650,
+    "y": 191,
+    "z": 1000,
+    "height": 461,
+    "width": 596,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "monthly_ops"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "month"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Month"
+                }
+              },
+              "queryRef": "monthly_ops.month.Variation.Date Hierarchy.Month",
+              "nativeQueryRef": "month Month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "monthly_ops"
+                        }
+                      },
+                      "Property": "delayed_15_45_min"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(monthly_ops.delayed_15_45_min)",
+              "nativeQueryRef": "Sum of delayed_15_45_min"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "monthly_ops"
+                        }
+                      },
+                      "Property": "delayed_45_90_min"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(monthly_ops.delayed_45_90_min)",
+              "nativeQueryRef": "Sum of delayed_45_90_min"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "monthly_ops"
+                        }
+                      },
+                      "Property": "delayed_90plus_min"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(monthly_ops.delayed_90plus_min)",
+              "nativeQueryRef": "Sum of delayed_90plus_min"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F59E0B'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(monthly_ops.delayed_15_45_min)"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EF4444'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(monthly_ops.delayed_45_90_min)"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7F1D1D'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(monthly_ops.delayed_90plus_min)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Delay Cause Breakdown by Month'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

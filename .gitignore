@@ -1,0 +1,8 @@
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+MEASURES-REVIEW.md
+CHANGES-APPLIED.md
+dax-measures-reference.md
+**/powerbi_backup/
+*.backupcredit-card-portfolio/data/mcc_spend_monthly.csv
+credit-card-portfolio/data/mcc_spend_monthly.csv

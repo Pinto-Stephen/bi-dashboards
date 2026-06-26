@@ -1,0 +1,41 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "a01b0f7bc0531b36d9c1",
+  "displayName": "Route Profitability",
+  "displayOption": "ActualSize",
+  "height": 1000,
+  "width": 1280,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F4F5F7'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "57b930f5030a20027751",
+      "target": "ba5e33794472c3340d0e",
+      "type": "DataFilter"
+    }
+  ]
+}

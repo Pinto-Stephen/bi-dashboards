@@ -1,0 +1,604 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "cdcb62f6c2db46ac4b9c",
+  "position": {
+    "x": 10.106023009248815,
+    "y": 0,
+    "z": 0,
+    "height": 337.82991202346045,
+    "width": 1269.0277464471014,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Physicians"
+                    }
+                  },
+                  "Property": "Name"
+                }
+              },
+              "queryRef": "Physicians.Name",
+              "nativeQueryRef": "Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Physicians"
+                    }
+                  },
+                  "Property": "Specialty"
+                }
+              },
+              "queryRef": "Physicians.Specialty",
+              "nativeQueryRef": "Specialty"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Physicians"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "Physicians.Region",
+              "nativeQueryRef": "Region"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Physicians"
+                    }
+                  },
+                  "Property": "Segment"
+                }
+              },
+              "queryRef": "Physicians.Segment",
+              "nativeQueryRef": "Segment"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Physicians"
+                        }
+                      },
+                      "Property": "Decile"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Physicians.Decile)",
+              "nativeQueryRef": "Sum of Decile"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Sales"
+                        }
+                      },
+                      "Property": "Revenue"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Sales.Revenue)",
+              "nativeQueryRef": "Sum of Revenue"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Sales"
+                        }
+                      },
+                      "Property": "Units"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Sales.Units)",
+              "nativeQueryRef": "Sum of Units"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Physicians"
+                      }
+                    },
+                    "Property": "Decile"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnFormatting": [
+        {
+          "properties": {
+            "dataBars": {
+              "minValue": {
+                "expr": {
+                  "Literal": {
+                    "Value": "0D"
+                  }
+                }
+              },
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#5B7FE8'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'minColor'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'foreground'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Sales.Revenue)"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Physicians"
+                                        }
+                                      },
+                                      "Property": "Segment"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Low Value'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#7B9ACC'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Physicians"
+                                        }
+                                      },
+                                      "Property": "Segment"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Mid Value'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#00C9D7'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Physicians"
+                                        }
+                                      },
+                                      "Property": "Segment"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'High Value'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#5B7FE8'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Physicians.Segment"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 2,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Physicians"
+                                        }
+                                      },
+                                      "Property": "Decile"
+                                    }
+                                  },
+                                  "Function": 0
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "7D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F05060'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "Physicians"
+                                            }
+                                          },
+                                          "Property": "Decile"
+                                        }
+                                      },
+                                      "Function": 0
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "4D"
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 4,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "Physicians"
+                                            }
+                                          },
+                                          "Property": "Decile"
+                                        }
+                                      },
+                                      "Function": 0
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "6D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F0A500'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "Physicians"
+                                            }
+                                          },
+                                          "Property": "Decile"
+                                        }
+                                      },
+                                      "Function": 0
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "0D"
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 4,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "Physicians"
+                                            }
+                                          },
+                                          "Property": "Decile"
+                                        }
+                                      },
+                                      "Function": 0
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "3D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#00CC88'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Sum(Physicians.Decile)"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "imageHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "77D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "defaultColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "180D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

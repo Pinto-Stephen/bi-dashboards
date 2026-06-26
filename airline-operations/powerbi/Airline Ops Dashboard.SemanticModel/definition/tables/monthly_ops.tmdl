@@ -1,0 +1,233 @@
+table monthly_ops
+	lineageTag: 7633dba3-8a53-45c5-bcd1-2ec583becd34
+
+	column route_id
+		dataType: string
+		lineageTag: e6b89842-7423-4bf3-978e-2497741839da
+		summarizeBy: none
+		sourceColumn: route_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b830c2cc-3c34-4e32-af30-876c22043f1d
+		summarizeBy: none
+		sourceColumn: month
+
+		variation Variation
+			isDefault
+			relationship: 8243b139-8b59-41d9-8c70-bdb086d81619
+			defaultHierarchy: LocalDateTable_1020730c-b7f0-4864-852d-91ea4dc18ed1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column scheduled_flights
+		dataType: int64
+		formatString: 0
+		lineageTag: 02f82457-17ca-4cb9-a64d-fc04d9b392ac
+		summarizeBy: sum
+		sourceColumn: scheduled_flights
+
+		annotation SummarizationSetBy = Automatic
+
+	column operated_flights
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f6bd39d-d7b3-4a18-9cd4-08995b44363c
+		summarizeBy: sum
+		sourceColumn: operated_flights
+
+		annotation SummarizationSetBy = Automatic
+
+	column cancelled_flights
+		dataType: int64
+		formatString: 0
+		lineageTag: 34aff803-89e2-4e80-8186-a8a1df552068
+		summarizeBy: sum
+		sourceColumn: cancelled_flights
+
+		annotation SummarizationSetBy = Automatic
+
+	column on_time_flights
+		dataType: int64
+		formatString: 0
+		lineageTag: ec678106-c675-443f-96bd-b6b4454ea343
+		summarizeBy: sum
+		sourceColumn: on_time_flights
+
+		annotation SummarizationSetBy = Automatic
+
+	column delayed_15_45_min
+		dataType: int64
+		formatString: 0
+		lineageTag: 69479d61-b1fc-49c4-bf6a-69af531299da
+		summarizeBy: sum
+		sourceColumn: delayed_15_45_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column delayed_45_90_min
+		dataType: int64
+		formatString: 0
+		lineageTag: 36f635cf-5ad3-48da-abf1-d72e350a4e94
+		summarizeBy: sum
+		sourceColumn: delayed_45_90_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column delayed_90plus_min
+		dataType: int64
+		formatString: 0
+		lineageTag: 41235eec-d24c-4c7e-b6a1-47af94c6e212
+		summarizeBy: sum
+		sourceColumn: delayed_90plus_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column otp_pct
+		dataType: double
+		lineageTag: 2985bcd6-892c-4b16-8c37-4890e7c627a3
+		summarizeBy: sum
+		sourceColumn: otp_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cancellation_pct
+		dataType: double
+		lineageTag: 68c69574-8e6b-44a5-8341-4e70884a2858
+		summarizeBy: sum
+		sourceColumn: cancellation_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_load_factor
+		dataType: double
+		lineageTag: 98c27e83-0f82-4c41-9a55-b5d1ca715edc
+		summarizeBy: sum
+		sourceColumn: avg_load_factor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column passengers
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e28f742-fe5c-41a1-a880-f60b33909de6
+		summarizeBy: sum
+		sourceColumn: passengers
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_total_fare_inr
+		dataType: int64
+		formatString: 0
+		lineageTag: 459b01fc-9e21-4017-80f2-8fef02598877
+		summarizeBy: sum
+		sourceColumn: avg_total_fare_inr
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue_inr
+		dataType: int64
+		formatString: 0
+		lineageTag: f2fb8ec8-7eeb-4b73-8b5f-42d22ec33c0e
+		summarizeBy: sum
+		sourceColumn: revenue_inr
+
+		annotation SummarizationSetBy = Automatic
+
+	column atf_price_per_liter
+		dataType: double
+		lineageTag: 9b3f2bc8-7f29-472b-8ae8-7a0437495265
+		summarizeBy: sum
+		sourceColumn: atf_price_per_liter
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fuel_consumed_liters
+		dataType: int64
+		formatString: 0
+		lineageTag: ba513890-20ef-4654-8b34-60ee72260ef7
+		summarizeBy: sum
+		sourceColumn: fuel_consumed_liters
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_cost_inr
+		dataType: int64
+		formatString: 0
+		lineageTag: 671db214-a9eb-4955-b4f1-320efc7252b4
+		summarizeBy: sum
+		sourceColumn: fuel_cost_inr
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_op_cost_inr
+		dataType: int64
+		formatString: 0
+		lineageTag: b2222fc0-d21c-47cb-9682-323526b919ad
+		summarizeBy: sum
+		sourceColumn: total_op_cost_inr
+
+		annotation SummarizationSetBy = Automatic
+
+	column operating_profit_inr
+		dataType: int64
+		formatString: 0
+		lineageTag: 12db7845-f7b8-4282-888d-6f444acb5248
+		summarizeBy: sum
+		sourceColumn: operating_profit_inr
+
+		annotation SummarizationSetBy = Automatic
+
+	column profit_margin_pct
+		dataType: double
+		lineageTag: 4f7bdf82-6c94-457c-ad9b-83be135481fb
+		summarizeBy: sum
+		sourceColumn: profit_margin_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column available_seat_km
+		dataType: int64
+		formatString: 0
+		lineageTag: 8f623b0d-ae83-4661-bdca-f07dbcf1a9de
+		summarizeBy: sum
+		sourceColumn: available_seat_km
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue_pax_km
+		dataType: int64
+		formatString: 0
+		lineageTag: 2bf98057-28e6-40e1-980f-9456a32ea076
+		summarizeBy: sum
+		sourceColumn: revenue_pax_km
+
+		annotation SummarizationSetBy = Automatic
+
+	partition monthly_ops = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\steph\Downloads\monthly_ops.csv"),[Delimiter=",", Columns=23, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"route_id", type text}, {"month", type date}, {"scheduled_flights", Int64.Type}, {"operated_flights", Int64.Type}, {"cancelled_flights", Int64.Type}, {"on_time_flights", Int64.Type}, {"delayed_15_45_min", Int64.Type}, {"delayed_45_90_min", Int64.Type}, {"delayed_90plus_min", Int64.Type}, {"otp_pct", type number}, {"cancellation_pct", type number}, {"avg_load_factor", type number}, {"passengers", Int64.Type}, {"avg_total_fare_inr", Int64.Type}, {"revenue_inr", Int64.Type}, {"atf_price_per_liter", type number}, {"fuel_consumed_liters", Int64.Type}, {"fuel_cost_inr", Int64.Type}, {"total_op_cost_inr", Int64.Type}, {"operating_profit_inr", Int64.Type}, {"profit_margin_pct", type number}, {"available_seat_km", Int64.Type}, {"revenue_pax_km", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

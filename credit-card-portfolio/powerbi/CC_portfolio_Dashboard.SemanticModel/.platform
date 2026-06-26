@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "CC_portfolio_Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "04b86c67-1709-4208-b498-183ef3955eb9"
+  }
+}

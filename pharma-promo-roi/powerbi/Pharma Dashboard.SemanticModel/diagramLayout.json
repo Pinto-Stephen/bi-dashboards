@@ -1,0 +1,111 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 784,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 618.46675423546048,
+            "y": -40.706649080151124
+          },
+          "nodeIndex": "Physicians",
+          "nodeLineageTag": "af40b2ef-1822-4da1-9aa1-3ffc5b132ba5",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1186.9312480546,
+            "y": 7.3769720075811733
+          },
+          "nodeIndex": "Products",
+          "nodeLineageTag": "9390065d-3759-43d2-8929-28ad67a998f8",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 334.228115925804,
+            "y": -50
+          },
+          "nodeIndex": "Promo_Activities",
+          "nodeLineageTag": "71881d38-4e05-4286-9af9-44b1c89c0b0c",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 7.1840397191455878
+          },
+          "nodeIndex": "Promo_Channels",
+          "nodeLineageTag": "3a90e08d-8e9e-402e-8c1f-588edd24c8c0",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 902.71483468181611,
+            "y": -35.468333941881482
+          },
+          "nodeIndex": "Sales",
+          "nodeLineageTag": "5c2a589d-2f8a-4bd0-9b3b-e6d1439b7393",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1654.9312480546,
+            "y": 43
+          },
+          "nodeIndex": "_Measures",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1420.9312480546,
+            "y": 36
+          },
+          "nodeIndex": "Calendar",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

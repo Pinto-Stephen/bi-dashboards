@@ -1,0 +1,58 @@
+table mcc_spend_monthly
+	lineageTag: 13450f33-82e5-44fb-be28-cdc894aae8f9
+
+	column cardholder_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 70ad6647-a4eb-4ae8-b319-78ab8772c944
+		summarizeBy: none
+		sourceColumn: cardholder_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9338728f-1ce6-4b8c-983e-7d8a0c6b877b
+		summarizeBy: none
+		sourceColumn: month
+
+		variation Variation
+			isDefault
+			relationship: 09cc39d6-7e82-4fd7-a3c1-cca1978ff05c
+			defaultHierarchy: LocalDateTable_389bdf88-f605-4cab-b436-62f75caa4d44.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column mcc_category
+		dataType: string
+		lineageTag: b77aef56-064e-4640-bd8f-3019b410a225
+		summarizeBy: none
+		sourceColumn: mcc_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column spend_amount
+		dataType: double
+		lineageTag: 7b62d631-d4b3-470d-8112-74f1a4e9b2f8
+		summarizeBy: sum
+		sourceColumn: spend_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mcc_spend_monthly = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\steph\Downloads\mcc_spend_monthly.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"cardholder_id", Int64.Type}, {"month", type date}, {"mcc_category", type text}, {"spend_amount", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

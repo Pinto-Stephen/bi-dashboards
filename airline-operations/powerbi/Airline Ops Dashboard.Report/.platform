@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Airline Ops Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2ffd67b0-2ccf-4632-96d6-14ea36a8edd9"
+  }
+}

@@ -1,0 +1,25 @@
+model Model
+	culture: en-IN
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["cardholder_dim","mcc_spend_monthly","monthly_performance","_Measures"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table cardholder_dim
+ref table DateTableTemplate_febe4fe6-0a03-4ed5-81da-16c2e9fcc2f9
+ref table LocalDateTable_36e08be7-1506-4956-8252-c7a2c5b47987
+ref table mcc_spend_monthly
+ref table LocalDateTable_389bdf88-f605-4cab-b436-62f75caa4d44
+ref table monthly_performance
+ref table LocalDateTable_52a4db7c-bc8a-4ceb-bb68-9157206c7f55
+ref table _Measures
+
+ref cultureInfo en-IN
+
